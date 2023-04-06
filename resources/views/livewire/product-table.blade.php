@@ -26,7 +26,7 @@
 </thead>
 <tbody>
 
-    @forelse ( $product as $data1)
+    @forelse ( $products as $data1)
     <tr>
 
         <td>{{ $data1->id }}</td>
@@ -46,6 +46,7 @@
     @endforelse
 </tbody>
 </table>
+<div class="flex justify-center items-center pt-5">{{ $products->links() }}</div>
 
 </div>
 </div>

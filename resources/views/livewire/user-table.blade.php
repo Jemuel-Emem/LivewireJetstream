@@ -28,7 +28,7 @@
         @empty
         <div class="offset-lg-6"><p>No found item</p></div>
         @endforelse
-        {{-- <div>   {{ $product->links() }}</div> --}}
+        <div class="flex justify-center items-center pt-5">{{ $products->links() }}</div>
         </div>
         </div>
         </div>

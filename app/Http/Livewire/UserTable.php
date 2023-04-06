@@ -19,7 +19,7 @@ class UserTable extends Component
         // ]);
         $search = '%' .$this->search. '%';
         return view('livewire.user-table',[
-            'products' => Product::where('name', 'like', $search)->paginate(20),
+            'products' => Product::where('name', 'like', $search)->paginate(10),
         ]);
 
         //  return view('livewire.user-table', [

@@ -14,12 +14,17 @@ class ProductTable extends Component
     public $image, $name,$description,$price,$stocks;
     public function render()
     {
-        $search = '%' .$this->search. '%';
-        $this->product=Product::where('name', 'like', $search)->get();
-        return view('livewire.product-table');
-        // return view('livewire.product-table',[
-        //     'product' => Product::search('name', $this->search)->paginate(2)
+        // $search = '%' .$this->search. '%';
+        // $this->product=Product::where('name', 'like', $search)->get();
+        // return view('livewire.product-table');
+        //  return view('livewire.product-table',[
+        //     'product' => Product::search('name','like', $this->search)->paginate(10),
         // ]);
+
+        $search = '%' .$this->search. '%';
+        return view('livewire.product-table',[
+            'products' => Product::where('name', 'like', $search)->paginate(10),
+        ]);
     }
 
     public function storeProduct(){
