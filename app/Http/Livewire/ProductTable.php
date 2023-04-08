@@ -20,7 +20,7 @@ class ProductTable extends Component
         //  return view('livewire.product-table',[
         //     'product' => Product::search('name','like', $this->search)->paginate(10),
         // ]);
-
+        $this->emit('updateCartCount');
         $search = '%' .$this->search. '%';
         return view('livewire.product-table',[
             'products' => Product::where('name', 'like', $search)->paginate(10),

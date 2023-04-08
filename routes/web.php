@@ -60,9 +60,15 @@ Route::prefix('admin')->middleware('admin')->group(function(){
 });
 
 Route::prefix('user')->middleware('user')->group(function(){
-    Route::get('/dashboard', function(){
+Route::get('/dashboard', function(){
         return view('userdashboard');
     })->name('user-dashboard');
 
+Route::get('/cart', function(){
+        return view('cart');
+})->name('cart');
 
+Route::get('/order', function(){
+    return view('order');
+})->name('order');
 });
