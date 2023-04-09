@@ -10,6 +10,7 @@ use Livewire\Component;
 class CartTable extends Component
 {
     public $cartitems, $sub_total = 0, $total = 0, $shipping = 0, $name,$price,$image=null;
+
     public function render()
     {
         $this->cartitems = cartlist::with('product')
@@ -42,6 +43,7 @@ class CartTable extends Component
         session()->flash('success', 'Product remove successfully');
     }
 
+
     public function checkOut($id){
 
         $this->cartitems = cartlist::with('product')
@@ -54,7 +56,7 @@ class CartTable extends Component
         $data = [
             'user_id' => auth()->user()->id,
             'user_name' => auth()->user()->name,
-            'product_id'=>$id,
+            'product_id'=>auth()->user()->id,
             'product_name'=>$this->name,
             'item_price' =>$this->price,
             'total_fee' =>$this->total,
@@ -62,7 +64,8 @@ class CartTable extends Component
 
            ];
            order::updateOrCreate($data);
-           $this->deleteItem($id);
+           $this->emit('updateCartCounts');
+           session()->flash('success', 'Your order was process');
 
         }
     }

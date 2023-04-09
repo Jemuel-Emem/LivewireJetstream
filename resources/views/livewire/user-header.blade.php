@@ -7,7 +7,7 @@
        </i></a>
        </li>
         <li>
-        <a href="order" class="block  mr-8 text-yellow-500 text-xl " style="text-decoration: none;"><i class="ri-store-line"><span class="text-light">Order</span></i></a>
+        <a href="order" class="block  mr-8 text-yellow-500 text-xl " style="text-decoration: none;"><i class="ri-store-line"><span class="text-light"><span class="text-red-400 text-sm rounded-xl bg-red-400 text-light p-1">{{ $ordertotal }}</span></span></i></a>
         </li>
     {{-- @endforeach --}}
  </div>

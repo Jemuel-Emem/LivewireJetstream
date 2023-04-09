@@ -25,6 +25,41 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <!-- Styles -->
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <link rel="stylesheet" href="{{  asset('sweetalert2/sweetalert2.min.css') }}">
+        <script src="/path/to/sweetalert2.min.js"></script>
+        <link rel="stylesheet" href="/path/to/sweetalert2.min.css">
+
+          <script>
+          window.addEventListener('show-delete-confirmation', event =>{
+          Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire(
+              Livewire.emit('deleteConfirmed')
+            )
+          }
+        })
+        });
+
+         window.addEventListener('product-deleted', event =>{
+            Swal.fire(
+              'Deleted!',
+              'The data has been deleted.',
+              'success'
+            )
+           });
+
+            </script>
+
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
@@ -43,7 +78,7 @@
                         <div class="hidden w-full md:block md:w-auto" id="navbar-solid-bg">
                         <ul class="flex flex-col pt-3 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
                         <li>
-                        <a href="" class="block  text-light text-xl no-underline" style="text-decoration: none;">Order List</a>
+                        <a href="" class="block  text-light text-xl no-underline" style="text-decoration: none;"><i class="ri-list-ordered"></i></a>
                         </li>
                         <li>
                         <a href="" class="block  mr-8 text-light text-xl " style="text-decoration: none;">Sales</a>
@@ -65,19 +100,14 @@
                         </div>
                         </nav>
 
-
-
-
-
-
                         </div>
 
                         <!-- Page Content -->
                         <main class="p-10">
                         {{ $slot }}
                         {{-- tapos ning slot ang gamiton mo para magamit mo ang layout sa iban nga view --}}
-                        </main>
-                        </div>
+                       </main>
+                    </div>
 
         @stack('modals')
 
