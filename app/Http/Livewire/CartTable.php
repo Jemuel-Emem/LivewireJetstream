@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class CartTable extends Component
 {
-    public $cartitems, $sub_total = 0, $total = 0, $shipping = 0, $name,$price,$image=null;
+    public $cartitems, $sub_total = 0, $total = 0, $shipping = 0, $name,$price,$image=null, $quantity , $stocks;
 
     public function render()
     {
@@ -43,6 +43,13 @@ class CartTable extends Component
         session()->flash('success', 'Product remove successfully');
     }
 
+    public function deleteCart($id){
+        $cart = cartlist::whereId($id)->first();
+        $cart->delete();
+        $this->emit('updateCartCount');
+
+    }
+
 
     public function checkOut($id){
 
@@ -52,6 +59,8 @@ class CartTable extends Component
             $this->name = $cart->product->name;
             $this->price = $cart->product->price;
             $this->image = $cart->product->image;
+            $this->quantity =$cart->quantity;
+            $this->stocks = $cart->product->stocks ;
         }
         $data = [
             'user_id' => auth()->user()->id,
@@ -59,13 +68,17 @@ class CartTable extends Component
             'product_id'=>auth()->user()->id,
             'product_name'=>$this->name,
             'item_price' =>$this->price,
+            'item_quantity' =>$this->quantity,
+            'item_stocks' =>$this->stocks,
             'total_fee' =>$this->total,
             'item_image' => $this->image,
 
            ];
+
            order::updateOrCreate($data);
            $this->emit('updateCartCounts');
-           session()->flash('success', 'Your order was process');
+           $this->deleteCart($id);
+           session()->flash('success', 'Processing your order');
 
         }
     }

@@ -11,7 +11,8 @@ class OrderTable extends Component
     public $orderitems;
     public function render()
     {
-        $this->orderitems = order::all();
+        $this->orderitems = order::with('product')
+        ->where(['user_id'=>auth()->user()->id])->get();
         return view('livewire.order-table');
     }
 

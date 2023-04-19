@@ -14,7 +14,7 @@ class ProductTable extends Component
     protected $listeners = ['deleteConfirmed' => 'deleteItem'];
 
     public $search, $product, $sub_id;
-    public $image, $name,$description,$price,$stocks;
+    public $image, $name,$description,$price,$stocks, $userID;
     public function render()
     {
         // $search = '%' .$this->search. '%';
@@ -30,17 +30,31 @@ class ProductTable extends Component
         ]);
     }
 
+
+    public function rules(){
+
+        return [
+            'image' => 'required',
+            'name' => 'required|string|min:6|regex:/^[a-zA-Z]+$/u|max:20|alpha_dash|unique:products,name,' . $this->id,
+            'description' => 'required',
+            'price' => 'required|integer',
+            'stocks' => 'required|integer',
+        ];
+    }
+
     public function storeProduct(){
 
-        $this->validate([
-            'image' =>'required',
-            'name' => 'required', //students = table name
-            'price' => 'required|integer',
-            'description' => 'required|max:30',
-            'stocks' => 'required|integer'
+    //     $this->validate([
+    //         'image' =>'required',
+    //         'name' => 'require|regex:/^[a-zA-Z]+$/u|max:255|unique:product,name,' . $this->name,
+    //         'description' => 'required', //students = table name
+    //         'price' => 'required|integer',
+    //         'stocks' => 'required|integer'
 
-        ]);
+    //     ]
 
+    // );
+        $this->validate();
 
         $product = new Product();
         //   $product->image = $this-> image;
@@ -119,6 +133,7 @@ class ProductTable extends Component
         $product->delete() ;
         $this->dispatchBrowserEvent('product-deleted');
     }
+
 
 
 

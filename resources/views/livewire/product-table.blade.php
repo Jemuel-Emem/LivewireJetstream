@@ -79,7 +79,7 @@
 {{ session('message') }}
 </div>
 @endif
-<div wire:loading wirer:target="image" wire:key="image"><i class="fa fa-spinner fa-spin "></i></div>
+<div wire:loading wirer:target="image" wire:key="image" ><i class="fa fa-spinner fa-spin "></i></div>
 {{-- //preview image --}}
 {{-- @if ($image)
 <img src="{{ $image->temporaryUrl() }}" width="100" alt="">
@@ -94,13 +94,13 @@
 <div class="form-group">
 <label for="">Product Name:</label>
 <input type="text" class="form-control" id=""  placeholder="" wire:model.defer="name" required>
-@error('productname') <span class="error text-danger">{{ $message }}</span>
+@error('name') <span class="error text-danger">{{ $message }}</span>
 @enderror
 </div>
 <div class="form-group">
 <label for="exampleInputPassword1">Product Discription:</label>
 <input type="text" class="form-control" id="" placeholder="" wire:model.defer="description" required>
-@error('discription') <span class="error text-danger">{{ $message }}</span>
+@error('description') <span class="error text-danger">{{ $message }}</span>
 @enderror
 </div>
 

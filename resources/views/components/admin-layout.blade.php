@@ -65,10 +65,10 @@
     <body class="font-sans antialiased">
                         <div>
                         {{-- //dire ka gali nag butang sang layout niya ? // oo. dira muna tnan ibutang --}}
-                        <nav class=" border-gray-200  dark:bg-gray-800 dark:border-gray-700 bg-blue-700 w-screen">
+                        <nav class=" border-gray-200  dark:bg-gray-800 dark:border-gray-700 bg-blue-700 w-12/12 p-2">
                         <div class=" flex flex-wrap items-center justify-between mx-auto">
-                        <a href="practice" class="flex items-center">
-                        <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 mr-3 sm:h-10" alt="Flowbite Logo" />
+                        <a href="dashboard" class="flex items-center">
+                        <img src="/images/logo1.png" class="mx-3 sm:h-10 rounded" alt="Logo" />
                         <span class="ml-2 text-light  text-2xl">Welcome! {{ Auth::user()->name }}</span>
                         </a>
                         <button data-collapse-toggle="navbar-solid-bg" type="button" class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-solid-bg" aria-expanded="false">
@@ -78,14 +78,17 @@
                         <div class="hidden w-full md:block md:w-auto" id="navbar-solid-bg">
                         <ul class="flex flex-col pt-3 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
                         <li>
-                        <a href="" class="block  text-light text-xl no-underline" style="text-decoration: none;"><i class="ri-list-ordered"></i></a>
+                        <a href="orderlist" class="block  0 text-xl no-underline " style="text-decoration: none;"><i class="ri-list-ordered text-yellow-500"></i></a>
                         </li>
                         <li>
-                        <a href="" class="block  mr-8 text-light text-xl " style="text-decoration: none;">Sales</a>
+                        <a href="" class="block  mr-8 text-light text-xl " style="text-decoration: none;"><i class="ri-inbox-fill text-yellow-500"></i></a>
+                        </li>
+                        <li>
+                            <a href="messages"><i class="ri-chat-3-fill text-yellow-500 text-xl"></i></a>
                         </li>
 
-                        <div class="pr-2 py-2">
-                        <a class=" text-light p-1" style="text-decoration:none;" href="{{ route('logout') }}"
+                        <div class="pr-2 mb-2">
+                        <a class=" text-light p-2 hover:underline border " style=";" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                         Logout

@@ -3,12 +3,13 @@
 namespace App\Http\Livewire;
 
 use App\Models\cartlist;
+use App\Models\comments;
 use App\Models\Product;
 use Livewire\Component;
 use Livewire\WithPagination;
 class UserTable extends Component
 {
-    public $product, $cartItem;
+    public $product, $cartItem, $name,$description, $comments,$price, $stocks,$image, $cartitems ,$sub_id;
     public $search ='';
     use WithPagination;
 
@@ -50,4 +51,29 @@ class UserTable extends Component
        $this->emit('updateCartCount');
        session()->flash('success', 'Product added to cart successfully');
     }
+
+
+    public function sendMessage($id){
+     Product::where('id',$id)->first();
+
+    }
+
+    public function sendComment($id){
+
+        $data = [
+            'id' => $this->$id,
+            'comments' =>$this->comments,
+
+           ];
+           comments::updateOrCreate($data);
+           $this->resetF();
+    }
+
+    public function resetF(){
+    $this->comments='';
+    }
+    public function close(){
+        $this->dispatchBrowserEvent('close-modal');
+    }
+
 }

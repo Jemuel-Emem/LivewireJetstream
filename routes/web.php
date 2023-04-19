@@ -57,6 +57,14 @@ Route::prefix('admin')->middleware('admin')->group(function(){
     Route::get('/dashboard', function(){
         return view('dashboard');
     })->name('admin-dashboard');
+
+    Route::get('/orderlist', function(){
+        return view('orderlist');
+})->name('orderlist');
+
+Route::get('/messages', function(){
+    return view('messages-table');
+})->name('messages');
 });
 
 Route::prefix('user')->middleware('user')->group(function(){
@@ -71,4 +79,8 @@ Route::get('/cart', function(){
 Route::get('/order', function(){
     return view('order');
 })->name('order');
+
+Route::get('/messages', function(){
+    return view('messages-table');
+})->name('messages');
 });

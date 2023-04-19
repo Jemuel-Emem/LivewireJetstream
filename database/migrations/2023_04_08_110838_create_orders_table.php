@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('product_name');
             $table->string('item_price');
             $table->string('total_fee');
+            $table->string('item_quantity');
+            $table->string('item_stocks');
             $table->string('status')->default("In progress");
             $table->timestamps();
         });
